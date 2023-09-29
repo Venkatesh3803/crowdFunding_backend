@@ -22,6 +22,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 5000
     },
+    image: {
+        type: String
+    }
 
 }, { timestamps: true })
 

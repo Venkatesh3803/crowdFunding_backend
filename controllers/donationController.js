@@ -16,3 +16,20 @@ export const donations = async (req, res) => {
         res.status(500).send(error.message)
     }
 }
+
+
+export const getDonations = async (req, res) => {
+    const userId = req.query.userid;
+    const proj = req.query.projectid;
+    try {
+        let donation;
+        if (userId) {
+            donation = await donationModel.find({ userId: userId })
+        } else {
+            donation = await donationModel.find({ projectId: proj })
+        }
+        res.status(201).json(donation)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+}
