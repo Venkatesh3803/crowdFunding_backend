@@ -48,15 +48,13 @@ export const deleteProject = async (req, res) => {
 export const getAllProjects = async (req, res) => {
     const userId = req.query.userid
     const cat = req.query.cat
-    const search = req.query.search
+  
     try {
         let project;
         if (userId) {
             project = await projectModel.find({ userId: userId })
         } else if (cat) {
             project = await projectModel.find({ category: cat })
-        } else if (search) {
-            project = await projectModel.find({ title: search })
         } else {
             project = await projectModel.find()
         }
