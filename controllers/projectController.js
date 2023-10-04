@@ -5,7 +5,7 @@ export const createProject = async (req, res) => {
     const newProject = await projectModel(req.body)
     try {
         const project = await newProject.save()
-        console.log(project)
+        res.status(201).json(project)
     } catch (error) {
         res.status(500).send(error.message)
     }
@@ -37,10 +37,10 @@ export const getProjectInfo = async (req, res) => {
 
 export const deleteProject = async (req, res) => {
     try {
-        const currProject = await projectModel.findById(req.user.id)
+        const currProject = await projectModel.findById(req.params.id)
         if (!currProject) return res.status(401);
         await projectModel.findOneAndDelete(currProject)
-        res.status(201).send("Deleted")
+        res.status(200).send("Deleted")
     } catch (error) {
         res.status(500).send(error.message)
     }
@@ -48,7 +48,7 @@ export const deleteProject = async (req, res) => {
 export const getAllProjects = async (req, res) => {
     const userId = req.query.userid
     const cat = req.query.cat
-  
+
     try {
         let project;
         if (userId) {
