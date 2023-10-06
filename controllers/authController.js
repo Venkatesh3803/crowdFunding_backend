@@ -30,7 +30,7 @@ export const login = async (req, res) => {
         }, process.env.JWT_KEY, { expiresIn: "24h" })
 
         const { password, ...userInfo } = user._doc;
-        res.status(201).json({...userInfo,token})
+        res.status(201).json({ ...userInfo, token })
     } catch (error) {
         res.status(500).json(error.message)
     }
