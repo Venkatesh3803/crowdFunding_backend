@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     balance: {
-        type: String,
+        type: Number,
         default: 5000
     },
     image: {

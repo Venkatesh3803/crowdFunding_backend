@@ -1,5 +1,6 @@
 import donationModel from "../models/donationModel.js";
 import projectModel from "../models/projectModel.js";
+import userModel from "../models/userModel.js";
 
 
 export const donations = async (req, res) => {
@@ -11,6 +12,12 @@ export const donations = async (req, res) => {
         let amount = currProj.risedAmount + risedAmount;
         if (!currProj) return res.sendStatus(401)
 
+        let currUser = await userModel.findById(req.body.userId)
+        let userAmount = currUser.balance - risedAmount
+
+        console.log(userAmount)
+
+        await currUser.updateOne({ balance: userAmount })
         await currProj.updateOne({ risedAmount: amount })
         await newDonation.save()
 
