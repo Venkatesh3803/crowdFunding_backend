@@ -15,8 +15,6 @@ export const donations = async (req, res) => {
         let currUser = await userModel.findById(req.body.userId)
         let userAmount = currUser.balance - risedAmount
 
-        console.log(userAmount)
-
         await currUser.updateOne({ balance: userAmount })
         await currProj.updateOne({ risedAmount: amount })
         await newDonation.save()

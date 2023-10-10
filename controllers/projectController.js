@@ -1,5 +1,5 @@
-import projectModel from "../models/projectModel.js";
 
+import projectModel from "../models/projectModel.js";
 
 export const createProject = async (req, res) => {
     const newProject = await projectModel(req.body)
