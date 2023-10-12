@@ -17,9 +17,9 @@ export const donations = async (req, res) => {
 
         await currUser.updateOne({ balance: userAmount })
         await currProj.updateOne({ risedAmount: amount })
-        await newDonation.save()
+        let donation = await newDonation.save()
 
-        res.status(201).json("Donated Sucessfully")
+        res.status(201).json(donation)
     } catch (error) {
         res.status(500).send(error.message)
     }
