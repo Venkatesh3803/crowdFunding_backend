@@ -32,9 +32,9 @@ export const getDonations = async (req, res) => {
     try {
         let donation;
         if (userId) {
-            donation = await donationModel.find({ userId: userId })
+            donation = await donationModel.find({ userId: userId }).sort({ createdAt: -1 })
         } else {
-            donation = await donationModel.find({ projectId: proj })
+            donation = await donationModel.find({ projectId: proj }).sort({ createdAt: -1 })
         }
         res.status(201).json(donation)
     } catch (error) {
